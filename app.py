@@ -142,6 +142,7 @@ def show_self_profile():
     res = sys.query_self_profile(cur_user)
     return render_template("profile.html", res=res)
 
+
 @app.route('/log_out', methods=["GET", "POST"])
 def log_out():
     return render_template("log_in.html")
@@ -175,11 +176,6 @@ def refund_ticket():
         return render_template("refund_ticket.html", alert_flag='show', res=res[1])
     else:
         return render_template("refund_ticket.html", alert_flag='true', res=res[1], alert_info=res[2])
-
-
-@app.route('/to_query_transfer', methods=["GET", "POST"])
-def to_query_transfer():
-    return render_template("transfer.html")
 
 
 @app.route('/to_buy_ticket', methods=["GET", "POST"])
@@ -220,27 +216,44 @@ def show_ticket():
     form = request.form.to_dict()
     res = sys.query_ticket(
         form['datepicker'], form['startSt'], form['toSt'], form['custom-radio-1'])
-    return render_template("show_ticket.html",res = res)
+    return render_template("show_ticket.html", res=res)
 
-@app.route('/instruction',methods=["GET", "POST"])
+
+@app.route('/instruction', methods=["GET", "POST"])
 def instruction():
     return render_template("instruction.html")
 
-@app.route('/ro_run_manager',methods=["GET", "POST"])
+
+@app.route('/ro_run_manager', methods=["GET", "POST"])
 def ro_run_manager():
     return render_template("manager.html")
 
-@app.route('/add_train',methods=["GET", "POST"])
+
+@app.route('/add_train', methods=["GET", "POST"])
 def add_train():
+    form = request.form.to_dict()
+    sys.add_train(form['add'])
     return render_template("manager.html")
 
-@app.route('/delete_train',methods=["GET", "POST"])
+
+@app.route('/delete_train', methods=["GET", "POST"])
 def delete_train():
+    form = request.form.to_dict()
+    sys.delete_train(form['delete'])
     return render_template("manager.html")
 
-@app.route('/release_train',methods=["GET", "POST"])
+
+@app.route('/release_train', methods=["GET", "POST"])
 def release_train():
+    form = request.form.to_dict()
+    sys.release_train(form['release'])
     return render_template("manager.html")
+
+
+@app.route('/to_qeury_transfer', methods=["GET", "POST"])
+def to_query_transfer():
+    return render_template("query_transfer.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8888)

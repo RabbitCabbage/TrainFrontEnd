@@ -181,3 +181,21 @@ class System:
         for i in range(1, len(list)):
             list[i] = list[i].split(' ')
         return list
+
+    def add_train(self,cmd):
+        cmd = '[0] add_train ' + cmd
+        self.write(cmd)
+        self.read()
+        return
+
+    def release_train(self,cmd):
+        cmd = '[0] release_train ' + cmd
+        self.write(cmd)
+        self.read()
+        return
+
+    def delete_train(self,cmd):
+        cmd = '[0] delete_train ' + cmd
+        self.write(cmd)
+        self.read()
+        return
