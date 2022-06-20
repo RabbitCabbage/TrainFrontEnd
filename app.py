@@ -142,12 +142,6 @@ def show_self_profile():
     res = sys.query_self_profile(cur_user)
     return render_template("profile.html", res=res)
 
-
-@app.route('/instruction', methods=["GET", "POST"])
-def instruction():
-    return render_template("instruction.html")
-
-
 @app.route('/log_out', methods=["GET", "POST"])
 def log_out():
     return render_template("log_in.html")
@@ -228,6 +222,25 @@ def show_ticket():
         form['datepicker'], form['startSt'], form['toSt'], form['custom-radio-1'])
     return render_template("show_ticket.html",res = res)
 
+@app.route('/instruction',methods=["GET", "POST"])
+def instruction():
+    return render_template("instruction.html")
+
+@app.route('/ro_run_manager',methods=["GET", "POST"])
+def ro_run_manager():
+    return render_template("manager.html")
+
+@app.route('/add_train',methods=["GET", "POST"])
+def add_train():
+    return render_template("manager.html")
+
+@app.route('/delete_train',methods=["GET", "POST"])
+def delete_train():
+    return render_template("manager.html")
+
+@app.route('/release_train',methods=["GET", "POST"])
+def release_train():
+    return render_template("manager.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8888)
